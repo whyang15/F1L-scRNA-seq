@@ -9,7 +9,7 @@ Using available scRNA-seq data from cancer cell lines, how would you explore the
 - Bevacizumab:  Targets VEGF and is used for a variety of cancers, including colorectal, lung, glioblastoma, breast, liver, and kidney cancer.
 &nbsp;
 
-## Memo
+## Week 1 Memo
 
 ### Cancer Cell Lines
 #### What are cancer cell lines?
