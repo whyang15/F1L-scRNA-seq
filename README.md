@@ -1,13 +1,22 @@
 # F1L-scRNA-seq
 This is part of the Figure 1 Lab (F1L) internship emulator where we dive into the Kinker paper (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8135089/) to recreate the first figure of the paper.  Through this process, I will learn the fundamentals of single-cell RNA sequencing (scRNA-seq), its use in cancer research and drug development, and how to analyze and interpret scRNA-seq data. 
 
-**The Key Scientific Question (KSQ):**
 
-Using available scRNA-seq data from cancer cell lines, how would you explore the use of the following FDA-approved antibody therapies in additional cancers?
+## Table of Contents
+- [Key Scientific Question](#the-key-scientific-question)
+- [Week 1 Memo](#week-1-memo)
+- [Week 2 Memo](#week-2-memo)
+- [References](#references)
+  
+
+## The Key Scientific Question
+
+**KSQ**: Using available scRNA-seq data from cancer cell lines, how would you explore the use of the following FDA-approved antibody therapies in additional cancers?
 
 - Trastuzumab:  Targets HER2 and is used in the treatment of HER2-positive breast and gastric cancers.
 - Bevacizumab:  Targets VEGF and is used for a variety of cancers, including colorectal, lung, glioblastoma, breast, liver, and kidney cancer.
 &nbsp;
+
 
 ## Week 1 Memo
 
@@ -148,6 +157,8 @@ When these signaling pathways like PI3k/Akt and MAPK/ERK are activated, endothel
 By binding to VEGF-A protein, bevacizumab prohibits VEGF-A from interacting with its receptors on the endothelial cells, hence reducing angiogenesis.  Studies have also shown that bevacizumab can also reduce size of existing microvessels and reduce tumor size over time (Mukherji, S.K., 2010).  
 
 &nbsp;  
+
+## Week 2 Memo
 
 ## References
 
