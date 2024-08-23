@@ -1,0 +1,31 @@
+To set up environments for this analysis:
+
+1. Install scanpy.
+    a. Open a terminal.  Use conda to install scanpy.
+        ```
+        conda install -c conda-forge scanpy python-igraph leidenalg
+        pip3 install scanpy
+        ```
+
+2. Create a conda environment that includes scanpy.
+    Open a terminal.  Due to issue on my Mac where Conda is failing to load the `libmamba` solver backend due to a missing `libarchive` library, 
+    I have to solve this by forcing to use the classic solver by specifying it directly in the command:
+        ``` conda create -n scrna python=3.9 --solver=classic  ```
+
+3.  Activate the environment.
+
+    ``` 
+    conda activate scrna
+    ```
+
+4.  Install packages we need.
+    ```
+    pip install notebook scanpy doubletdetection
+    ```
+
+5.  Go to working directory and start jupyter notebook.
+    ```
+    cd /Users/weihsienyang/Desktop/FigureOneLab /kinker
+    jupyter notebook
+
+    
