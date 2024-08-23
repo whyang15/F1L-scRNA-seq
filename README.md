@@ -1,6 +1,6 @@
 # F1L-scRNA-seq
-This is part of the Figure 1 Lab (F1L) internship emulator where we dive into the Kinker paper (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8135089/) to recreate the first figure of the paper.  Through this process, I will learn the fundamentals of single-cell RNA sequencing (scRNA-seq), its use in cancer research and drug development, and how to analyze and interpret scRNA-seq data. 
-
+This is part of the Figure 1 Lab (F1L) internship emulator where we dive into the Kinker paper (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8135089/) to recreate the first figure of the paper.  Through this process, I will learn the fundamentals of single-cell RNA sequencing (scRNA-seq), its use in cancer research and drug development, and how to analyze and interpret scRNA-seq data.  
+&nbsp;
 
 ## Table of Contents
 - [Key Scientific Question](#the-key-scientific-question)
@@ -8,6 +8,7 @@ This is part of the Figure 1 Lab (F1L) internship emulator where we dive into th
 - [Week 2 Memo](#week-2-memo)
 - [References](#references)
   
+&nbsp;
 
 ## The Key Scientific Question
 
@@ -138,15 +139,14 @@ Bevacizumab (Avastin by Roche) is a monoclonal anti-vascular endothelial growth 
 &nbsp;  
 
 **What is VEGF?** 
-
 **VEGF-A:** This is a primary growth factor involved in angiogenesis. It binds to receptors on the surface of endothelial cells, which are the cells lining blood vessels.  
 
 **VEGFR-2:** This is one of the main receptors through which VEGF-A exerts its effects. It is predominantly expressed on endothelial cells and plays a crucial role in mediating the angiogenic signals.  
 
 When VEGF-A binds to VEGFR-2 on the surface of endothelial cells, it triggers several intracellular signaling pathways.  
 - PI3K/Akt Pathway: This pathway promotes cell survival and proliferation, contributing to the growth of new blood vessels.
-- MAPK/ERK Pathway: This pathway is involved in cell growth, differentiation, and migration, which are essential for the formation of new blood vessels.  &nbsp;  
-
+- MAPK/ERK Pathway: This pathway is involved in cell growth, differentiation, and migration, which are essential for the formation of new blood vessels.
+&nbsp;  
 
 **How does bevacizumab work?**
 
@@ -154,12 +154,51 @@ Bevacizumab works by binding to the VEGF-A protein.  A key driver for angiogenes
 
 When these signaling pathways like PI3k/Akt and MAPK/ERK are activated, endothelial cells divide and proliferate, then migrate to area of signal and  form new blood vessel sprouts.  They then integrate into the existing blood vessel network and become new vessels.  
 
-By binding to VEGF-A protein, bevacizumab prohibits VEGF-A from interacting with its receptors on the endothelial cells, hence reducing angiogenesis.  Studies have also shown that bevacizumab can also reduce size of existing microvessels and reduce tumor size over time (Mukherji, S.K., 2010).  
-
+By binding to VEGF-A protein, bevacizumab prohibits VEGF-A from interacting with its receptors on the endothelial cells, hence reducing angiogenesis.  Studies have also shown that bevacizumab can also reduce size of existing microvessels and reduce tumor size over time (Mukherji, S.K., 2010).   
 &nbsp;  
 
 ## Week 2 Memo
+This week's objective is to read through [Kinker _et el_ paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8135089/) (DOI: 10.1038/s41588-020-00726-6) and understand the fundamentals of this paper's study. Then follow some of the suggested resources to familiarize ourself with analyzing scRNA-seq data.
+- [Single-cell best practices](https://www.sc-best-practices.org/preamble.html)
+- [Luecken and Theis's paper from 2019](https://doi.org/10.15252/msb.20188746)
+- Mark Sanborn showing how he analyzes scRNA-seq data: [Part 1](https://youtu.be/cmOlCTGX4Ik?si=GD-OnvawBIxWNIwH) and [Part 2](https://www.youtube.com/watch?v=FqG_O12oWR4)
 
+### Summary
+In this paper, the authors addressed the question whether the heterogeneity observed in cancer cell lines reflect those observed in malignant tumor cells from patients. Using scRNA-seq technique, the authors profiled multiplexed pools of ~200 cancer cell lines from 22 cancer types. They were able to identify several recurrent heterogeneous expression programs within several cancer cell lines that are associated with biological processes like cell cycle, senescence, stress and interferon responses, epithelial-mesenchymal transitions and protein metabolism. These programs were also recently identified as showing heterogeneous expression in human tumors.  
+
+The authors then dived deeper into studying the subpopulations of senescence-related cells from selected cell lines as models. This study revealed an epithelial senescence-associated (EpiSen) program in subpopulations where low levels of EpiSen correlated with cell proliferation and high EpiSen correlated with lower proliferation and enriched for G0/G1 phases.  These indicate that EpiSen program is dynamically regulated between proliferation and cellular transitions.  In addition, the authors also found drug sensitivity differences between EpiSen-Low and EpiSen-High subpopulations.  EpiSen-low cells were shown to have high sensitivity to inhibitors of cell cycle regulators which matches the observation of increased proliferation.  EpiSen-high cells were shown to have high sensitivity to inhibitors like EGFR, AKT, P13k, IFG1R, DNA-PK where some of these inhibitors target the DNA repair machinery.  This is also consistent with the observation that EpiSen-high cells correlated more with cellular transitions and not in proliferation.  
+
+Intrigued by the sensitivity responses in EpiSen programs, the authors looked into clinical responses to Cetuximab, an EGFR inhibitor used for treatment of HNSCC (head and neck squamous cell carcinoma).  Stratifying the responses by long progression-free survival (PFS) after Cetuximab treatment, they found correlation between PFS duration and EpiSen scores.  Patients with long PFS show high EpiSen scores while those with short PFS show lower PFS scores.  These observations suggest that EpiSen scores may be used as a predictor in clinical responses to treatments.  
+&nbsp;
+
+#### Some questions posed by Dean Lee to help us understand the paper
+- How did the authors handle the potential caveat of co-culturing cell lines before profiling by scRNA-seq? Why do you think that caveat was or was not adequately addressed?
+
+One caveat when co-culturing cell lines is that the different cell lines may interact in ways that alter their behavior, potentially leading to misleading results. For example, one cell line might produce factors that influence the growth or behavior of another, masking the true effects of a treatment or condition.
+
+The caveat was adequately addressed by performing a controlled experiment where 6 cell lines were profiled with and without co-culturing.  There was modest difference in profiles between the singlet cultures vs co-cultured cell lines, but the heterogeneity patterns were very consistent between the conditions. One can argue that there can potentially still be co-culturing effects as 6 cells lines may not be representative of the diversity of the 200+ cell lines in this study.
+&nbsp;
+
+- The authors identified discrete subpopulations of cells within a subset of individual cell lines (Fig. 2A-B). What might be the reason why some cell lines have these discrete subpopulations while others do not?
+
+Some cell lines have discrete subpopulations which may be due to various factors such as cell cycle states, genetic variability, developmental processes, and disease states (genetic changes or expression changes that can influence disease progression).  The more discrete subpopulations in the study are more due to unique genetic variants and are cell-line specific.  The subpopulations that show continuous patterns of expression heterogeneity are attributed to cellular states, epigenetic changes, and phenotypic plasticity.  
+&nbsp;
+
+- What are Recurrent Heterogeneous Programs (RHPs) and how were they defined?
+
+RHP refers to cellular processes or gene expression profiles that are diverse (or heterogeneous) and repeatable between different conditions, time points, or within a population of cells. For example, in cancer research, recurrent gene expression programs may vary between different tumor cells (heterogenous) but are consistently observed in multiple instances of a particular cancer type (recurrent). Identifying these recurrent heterogeneous programs could help in understanding how certain cellular states contribute to disease progression, resistance to treatment, or recurrence after therapy.  
+&nbsp;
+
+- How do the identified RHPs relate to in vivo programs of heterogeneity in tumors, and what evidence supports this relationship?
+
+There were 10 RHPs (Recurrent Heterogeneity programs) that were identified that reflected various biological processes. These were not in the same cell cycle states with some expressed in non-cycling cells. These RHPs are considered robust since they were found across many cell lines and in different pools. Seven out of the ten identified RHPs closely resemble in vivo heterogeneity programs in tumors, sharing many signature genes and showing high correlation in cell scores. This relationship is supported by evidence that:
+  - **Stress Response Associations:** Two RHPs are linked to stress responses such as DNA damage shown in the following examples. RHP #8 shows similarity to the heterogeneity observed in melanoma and HNSCC tumors, while RHP #4, which contains interferon response genes, mirrors the heterogeneity program in ovarian cancer ascites samples.
+  - **Recapitulation of EMT Programs:** Three RHPs are related to epithelial-mesenchymal transition (EMT) programs. RHP #2 (EMT-I), specific to melanoma, negatively correlates with another melanoma-specific RHP (#1), reflecting patterns of variability linked to drug resistance. RHPs #3 (EMT-II) and #5 (EMT-III) represent EMT-like processes in other cell lines, with EMT-II being associated with metastasis-linked partial EMT states in HNSCC tumors. EMT-II also correlates with sensitivity to NOTCH pathway inhibitors, suggesting a link to NOTCH pathway variability. EMT-III, enriched in non-cycling cells, involves genes related to cell junction organization.  
+  - **Senescence Programs:** RHPs #6 and #7 are associated with classical and epithelial senescence programs, found in G0 cells. RHP #6, enriched in p53-wild type cell lines, includes senescence mediators like p21 and is linked to p53 activation sensitivity. RHP #7 resembles the senescence response in keratinocytes and other epithelial cells, characterized by low proliferation and a secretory phenotype.
+
+These findings demonstrate that RHPs mirror in vivo tumor heterogeneity, capturing key stress responses, EMT processes, and senescence programs, thereby reinforcing their relevance to tumor biology.  
+
+&nbsp;
 ## References
 
 Bancroft, D. (2022, June 21). Roche's patent halts an Amgen biosimilar debut. Labiotech.eu. Retrieved from  https://www.labiotech.eu/trends-news/roches-patent-halts-an-amgen-biosimilar-debut/
@@ -167,6 +206,10 @@ Bancroft, D. (2022, June 21). Roche's patent halts an Amgen biosimilar debut. La
 DrugBank. (2024, May 3). Bevacizumab. DrugBank Online. Retrieved [date], from  https://go.drugbank.com/drugs/DB00112
 
 Haque, A., Engel, J., Teichmann, S. A., & Lönnberg, T. (2017). A practical guide to single-cell RNA-sequencing for biomedical research and clinical applications. Genome Medicine, 9(75).  https://doi.org/10.1186/s13073-017-0467-4
+
+Kinker, G. S., Greenwald, A. C., Tal, R., Orlova, Z., Cuoco, M. S., McFarland, J. M., Warren, A., Rodman, C., Roth, J. A., Bender, S. A., Kumar, B., Rocco, J. W., Fernandes, P. A. C. M., Mader, C. C., Keren-Shaul, H., Plotnikov, A., Barr, H., Tsherniak, A., Rozenblatt-Rosen, O., Krizhanovsky, V., … Tirosh, I. (2020). Pan-cancer single-cell RNA-seq identifies recurring programs of cellular heterogeneity. Nature genetics, 52(11), 1208–1218. https://doi.org/10.1038/s41588-020-00726-6
+
+Luecken, M.D. and Theis, F.J. (2019, June 19) Current best practices in single-cell RNA-seq analysis: a tutorial. Molecular Systems Biology, 15:e8746. https://doi.org/10.15252/msb.20188746
 
 Mukherji, S. K. (2010, February). Bevacizumab (Avastin). American Journal of Neuroradiology, 31(2), 235-236.  https://doi.org/10.3174/ajnr.A1987
 
