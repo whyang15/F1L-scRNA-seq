@@ -1,3 +1,8 @@
 .ipynb_checkpoints/
 data/
 .DS_Store/
+240701_kinker_anndata.ipynb
+240702_kinker_scanpy.ipynb
+240703_kinker_explore.ipynb
+screenshots/initial_fig1b_umap.png
+
