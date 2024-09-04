@@ -6,6 +6,7 @@ This is part of the Figure 1 Lab (F1L) internship emulator where we dive into th
 - [Key Scientific Question](#the-key-scientific-question)
 - [Week 1 Memo](#week-1-memo)
 - [Week 2 Memo](#week-2-memo)
+- [Week 3 Results](#week-3-results)
 - [References](#references)
   
 &nbsp;
@@ -197,6 +198,73 @@ There were 10 RHPs (Recurrent Heterogeneity programs) that were identified that 
   - **Senescence Programs:** RHPs #6 and #7 are associated with classical and epithelial senescence programs, found in G0 cells. RHP #6, enriched in p53-wild type cell lines, includes senescence mediators like p21 and is linked to p53 activation sensitivity. RHP #7 resembles the senescence response in keratinocytes and other epithelial cells, characterized by low proliferation and a secretory phenotype.
 
 These findings demonstrate that RHPs mirror in vivo tumor heterogeneity, capturing key stress responses, EMT processes, and senescence programs, thereby reinforcing their relevance to tumor biology.  
+
+&nbsp;
+
+## Week 3 Results
+This week, we will explore the scRNA-seq dataset that we downloaded from Kinker et al last week.  Then, using Scanpy, try to re-generate Figure 1B of the paper and examine the data the same way that the authors did.  
+
+If we feel adventurous, we can challenge ourselves by generating Figures 2b and 2d as well.
+
+### Results
+My notes and results for this week are documented in the AY_24082* Jupyter Notebooks in this github.  
+Final plots generated:
+
+I created a new obs where I flipped CellLine values so that the CellType appears first and then the Cell line ID.  This makes plotting easier to view and more consistent with Kinker's Fig 1B.
+
+**try to replicate using t-SNE:**
+Ensure the DataFrame has the combined column
+```
+subset_adata.obs['CellType_CellLine'] = (
+    subset_adata.obs['CellType'].astype(str) + '_' + subset_adata.obs['CellLine_Id'].astype(str)
+)
+
+sc.pl.tsne(subset_adata, color=['CellType_CellLine'], show=True)
+```
+
+![Fig1b t-SNE first try](screenshots/fig1b_tsne_try1.png)  
+
+
+
+This almost looks similar to the Kinker Fig 1b. However, the colors are not gradient for each Cell type. The better way is to try to color by CellType and gradient is by CellLine_Id. However, after several tries with Google, ChatGPT help to create custom color mapping, the plot still does not map the colors correctly.
+I'm pretty happy with the plot above as the re-ordered CellType_CellLine makes it easier to look by cell type.
+
+&nbsp;
+
+One more try to change the palette to 4 colors of blues, then 4 colors of reds, 4 greens, etc to better match cell type.
+
+```
+# Define your custom palette
+
+custom_palette = sns.color_palette("Blues", 4) + \
+                 sns.color_palette("Reds", 4) + \
+                 sns.color_palette("Greens", 4) + \
+                 sns.color_palette("Purples", 4) + \
+                 sns.color_palette("Oranges", 4) + \
+                 sns.color_palette("Greys", 4)
+
+# Try plotting again, potentially without sorting, with default palette
+sc.pl.tsne(subset_adata, color='CellType_CellLine', palette=custom_palette, show=True)
+```
+
+![fig1b t-SNE final plot](screenshots/fig1b_tsne_final.png)
+
+&nbsp;
+
+### Challenge
+Try to reproduce Figure 2B and 2D from Kinker et al.
+
+I did not spend a lot of time on this. After plotting really quickly with existing adata dataframe, I realized that to replicate these plots, I will need to do better assessments of the discrete_cluster_minpts5_eps1.8 vs the DBSCAN results.
+
+I will go back to the code at https://github.com/gabrielakinker/CCLE_heterogeneity to learn more on how to properly generate these plots.
+
+Here's an example of the t-SNE plot to demonstrate NCIH2110 cell line that show multiple subpopulations. Clusters here are not very distinct.
+![fig2b NCIH2110 >2 clusters](screenshots/fig2b_NCIH2110.png)
+
+Same issue with the second plot where we are expecting 2 clusters of subpopulations and the clusters are not very distinct.
+![fig2b NCIH1299 2 major clusters](screenshots/fig2b_2clusters.png)
+
+I suspect that I will need to compare the discrete cluster results against DBSCAN results to better filter for the correct cells.
 
 &nbsp;
 ## References
