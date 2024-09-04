@@ -1,5 +1,5 @@
 # F1L-scRNA-seq
-This is part of the Figure 1 Lab (F1L) internship emulator where we dive into the Kinker paper (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8135089/) to recreate the first figure of the paper.  Through this process, I will learn the fundamentals of single-cell RNA sequencing (scRNA-seq), its use in cancer research and drug development, and how to analyze and interpret scRNA-seq data.  
+This is part of the Figure 1 Lab (F1L) internship emulator set up by Dean Lee where we dive into the Kinker paper (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8135089/) to recreate the first figure of the paper.  Through this process, I will learn the fundamentals of single-cell RNA sequencing (scRNA-seq), its use in cancer research and drug development, and how to analyze and interpret scRNA-seq data.  
 &nbsp;
 
 ## Table of Contents
@@ -198,6 +198,9 @@ There were 10 RHPs (Recurrent Heterogeneity programs) that were identified that 
   - **Senescence Programs:** RHPs #6 and #7 are associated with classical and epithelial senescence programs, found in G0 cells. RHP #6, enriched in p53-wild type cell lines, includes senescence mediators like p21 and is linked to p53 activation sensitivity. RHP #7 resembles the senescence response in keratinocytes and other epithelial cells, characterized by low proliferation and a secretory phenotype.
 
 These findings demonstrate that RHPs mirror in vivo tumor heterogeneity, capturing key stress responses, EMT processes, and senescence programs, thereby reinforcing their relevance to tumor biology.  
+
+### Dataset Download
+Dataset for this paper can be downloaded from the Broad Institute's single-cell data repository [SCP542](https://singlecell.broadinstitute.org/single_cell/study/SCP542/pan-cancer-cell-line-heterogeneity?#study-download)  
 
 &nbsp;
 
